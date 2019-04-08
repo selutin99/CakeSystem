@@ -56,7 +56,7 @@ public class ImplUnitOfWork<T> implements UnitOfWork<T>{
         if(context == null || context.size() == 0){
             return;
         }
-        log.info("Начинаем выполнять действия");
+        log.info("Начинаем выполнять транзакцию");
         if(context.containsKey(UnitOfWork.INSERT)){
             commitInsert();
         }
@@ -66,7 +66,7 @@ public class ImplUnitOfWork<T> implements UnitOfWork<T>{
         if(context.containsKey(UnitOfWork.DELETE)){
             commitDelete();
         }
-        log.info("Выполнение действий завершено");
+        log.info("Транзакция завершена");
     }
 
     private void commitInsert(){

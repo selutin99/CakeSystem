@@ -17,5 +17,7 @@ public class App {
 
         cakesRepo.create(pm);
         cakesRepo.commit();
+
+        System.out.println(cakesRepo.find(1));
     }
 }
