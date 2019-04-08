@@ -1,12 +1,12 @@
-package com.cake.system.entity;
+package com.cake.system.entity.associations;
 
+import com.cake.system.entity.Cakes;
+import com.cake.system.entity.Decorations;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class CakesDecorations {
     private Cakes cakeID;
     private Decorations decorations;
