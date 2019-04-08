@@ -21,13 +21,13 @@ public class ImplUnitOfWork<T> implements UnitOfWork<T>{
 
     @Override
     public void create(T entity) {
-        log.info("Добавление "+entity.toString());
+        log.trace("Добавление "+entity.toString());
         registerOperation(entity, UnitOfWork.INSERT);
     }
 
     @Override
     public void edit(T entity) {
-        log.info("Редактирование "+entity.toString());
+        log.trace("Редактирование "+entity.toString());
         registerOperation(entity, UnitOfWork.EDIT);
     }
 

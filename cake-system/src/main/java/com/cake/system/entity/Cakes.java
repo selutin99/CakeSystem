@@ -12,6 +12,6 @@ public class Cakes {
     private String name;
     private float price;
 
-    private Customers customerID;
-    private CakesBases cakeBase;
+    private int customerID;
+    private int cakeBase;
 }
