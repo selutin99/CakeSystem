@@ -1,13 +1,13 @@
 package com.cake.system.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NonNull;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class DecorationsCharacteristics {
-    @NonNull
     private Decorations cakeDecorationID;
-
-    @NonNull
     private Characteristics cakeDecorationCharacteristicsID;
 }
