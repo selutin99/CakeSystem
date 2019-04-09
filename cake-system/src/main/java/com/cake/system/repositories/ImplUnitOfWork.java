@@ -1,6 +1,6 @@
 package com.cake.system.repositories;
 
-import com.cake.system.storages.Database;
+import com.cake.system.storages.database.DatabaseEntity;
 import lombok.extern.log4j.Log4j2;
 
 import java.util.ArrayList;
@@ -12,9 +12,9 @@ public class ImplUnitOfWork<T> implements UnitOfWork<T>{
 
     //Хранилище действий
     private Map<String, List<T>> context;
-    private Database database;
+    private DatabaseEntity database;
 
-    public ImplUnitOfWork(Map<String, List<T>> context, Database database){
+    public ImplUnitOfWork(Map<String, List<T>> context, DatabaseEntity database){
         this.context = context;
         this.database = database;
     }
@@ -39,6 +39,7 @@ public class ImplUnitOfWork<T> implements UnitOfWork<T>{
 
     @Override
     public T find(int id) {
+        log.info("Поиск с id: "+id);
         return (T) database.findById(id);
     }
 

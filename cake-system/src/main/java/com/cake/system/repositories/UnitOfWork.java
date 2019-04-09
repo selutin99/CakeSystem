@@ -1,5 +1,7 @@
 package com.cake.system.repositories;
 
+import java.util.List;
+
 public interface UnitOfWork<T> {
     String INSERT = "INSERT";
     String DELETE = "DELETE";

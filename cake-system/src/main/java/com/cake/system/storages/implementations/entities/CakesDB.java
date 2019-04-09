@@ -1,12 +1,12 @@
-package com.cake.system.storages.implementations;
+package com.cake.system.storages.implementations.entities;
 
 import com.cake.system.entity.Cakes;
-import com.cake.system.storages.Database;
+import com.cake.system.storages.database.DatabaseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CakesDB implements Database<Cakes> {
+public class CakesDB implements DatabaseEntity<Cakes> {
 
     private List<Cakes> cakes;
 
@@ -24,6 +24,8 @@ public class CakesDB implements Database<Cakes> {
         int inputID = cakes.getId();
         for(int i=0; i<this.cakes.size(); i++){
             if(this.cakes.get(i).getId()==inputID){
+
+                this.cakes.get(i).setId(cakes.getId());
                 this.cakes.get(i).setName(cakes.getName());
                 this.cakes.get(i).setPrice(cakes.getPrice());
                 this.cakes.get(i).setCustomerID(cakes.getCustomerID());

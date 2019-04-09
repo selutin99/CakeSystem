@@ -1,4 +1,4 @@
-package com.cake.system.storages;
+package com.cake.system.storages.database;
 
 public interface Database<T> {
     void insert(T t);
@@ -6,6 +6,4 @@ public interface Database<T> {
     void edit(T t);
 
     void delete(T t);
-
-    T findById(int id);
 }
