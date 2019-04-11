@@ -26,9 +26,13 @@ public class DecorationsDB implements DatabaseEntity<Decorations> {
         for(int i=0; i<this.decorations.size(); i++){
             if(this.decorations.get(i).getId()==inputID){
 
-                this.decorations.get(i).setPrice(decorations.getId());
-                this.decorations.get(i).setName(decorations.getName());
-                this.decorations.get(i).setPrice(decorations.getPrice());
+                Decorations dc = new Decorations();
+                dc.setId(decorations.getId());
+                dc.setName(decorations.getName());
+                dc.setPrice(decorations.getPrice());
+
+                this.decorations.remove(i);
+                this.decorations.add(i, dc);
 
                 return;
             }

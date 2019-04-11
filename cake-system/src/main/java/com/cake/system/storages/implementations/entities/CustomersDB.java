@@ -25,9 +25,13 @@ public class CustomersDB implements DatabaseEntity<Customers> {
         for(int i=0; i<this.customers.size(); i++){
             if(this.customers.get(i).getId()==inputID){
 
-                this.customers.get(i).setId(customers.getId());
-                this.customers.get(i).setFirstName(customers.getFirstName());
-                this.customers.get(i).setLastName(customers.getLastName());
+                Customers cs = new Customers();
+                cs.setId(customers.getId());
+                cs.setFirstName(customers.getFirstName());
+                cs.setLastName(customers.getLastName());
+
+                this.customers.remove(i);
+                this.customers.add(i, cs);
 
                 return;
             }

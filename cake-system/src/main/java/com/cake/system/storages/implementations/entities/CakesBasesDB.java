@@ -24,8 +24,14 @@ public class CakesBasesDB implements DatabaseEntity<CakesBases> {
         int inputID = cakesBases.getId();
         for(int i=0; i<this.cakesBases.size(); i++){
             if(this.cakesBases.get(i).getId()==inputID){
-                this.cakesBases.get(i).setId(cakesBases.getId());
-                this.cakesBases.get(i).setName(cakesBases.getName());
+
+                CakesBases ckb = new CakesBases();
+                ckb.setId(cakesBases.getId());
+                ckb.setName(cakesBases.getName());
+
+                this.cakesBases.remove(i);
+                this.cakesBases.add(i, ckb);
+
                 return;
             }
         }

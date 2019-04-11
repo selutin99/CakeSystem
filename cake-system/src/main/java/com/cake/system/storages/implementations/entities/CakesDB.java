@@ -25,13 +25,16 @@ public class CakesDB implements DatabaseEntity<Cakes> {
         for(int i=0; i<this.cakes.size(); i++){
             if(this.cakes.get(i).getId()==inputID){
 
-                this.cakes.get(i).setId(cakes.getId());
-                this.cakes.get(i).setName(cakes.getName());
-                this.cakes.get(i).setPrice(cakes.getPrice());
-                this.cakes.get(i).setCustomerID(cakes.getCustomerID());
-                this.cakes.get(i).setCakeBase(cakes.getCakeBase());
+                Cakes cake = new Cakes();
+                cake.setId(cakes.getId());
+                cake.setName(cakes.getName());
+                cake.setPrice(cakes.getPrice());
+                cake.setCustomerID(cakes.getCustomerID());
+                cake.setCakeBase(cakes.getCakeBase());
 
-                return;
+                this.cakes.remove(i);
+                this.cakes.add(i, cake);
+
             }
         }
     }
@@ -42,16 +45,15 @@ public class CakesDB implements DatabaseEntity<Cakes> {
         for(int i=0; i<this.cakes.size(); i++){
             if(this.cakes.get(i).getId()==inputID){
                 this.cakes.remove(i);
-                return;
             }
         }
     }
 
     @Override
     public Cakes findById(int id) {
-        for(Cakes ck: cakes){
-            if(ck.getId()==id){
-                return ck;
+        for(int i=0; i<this.cakes.size(); i++){
+            if(this.cakes.get(i).getId()==id){
+                return this.cakes.get(i);
             }
         }
         return null;

@@ -22,14 +22,16 @@ public class CakesCharacteristicsDB implements DatabaseAssoc<CakesCharacteristic
     @Override
     public void edit(CakesCharacteristics cakesCharacteristics) {
         int inputCakeID = cakesCharacteristics.getCakeID();
-        int inputCharID = cakesCharacteristics.getCharacteristicID();
 
         for (int i = 0; i < this.cakesCharacteristics.size(); i++) {
-            if (this.cakesCharacteristics.get(i).getCakeID() == inputCakeID &&
-                    this.cakesCharacteristics.get(i).getCharacteristicID() == inputCharID) {
+            if (this.cakesCharacteristics.get(i).getCakeID() == inputCakeID) {
 
-                this.cakesCharacteristics.get(i).setCakeID(cakesCharacteristics.getCakeID());
-                this.cakesCharacteristics.get(i).setCharacteristicID(cakesCharacteristics.getCharacteristicID());
+                CakesCharacteristics ck = new CakesCharacteristics();
+                ck.setCakeID(cakesCharacteristics.getCakeID());
+                ck.setCharacteristicID(cakesCharacteristics.getCharacteristicID());
+
+                this.cakesCharacteristics.remove(i);
+                this.cakesCharacteristics.add(i, ck);
 
                 return;
             }

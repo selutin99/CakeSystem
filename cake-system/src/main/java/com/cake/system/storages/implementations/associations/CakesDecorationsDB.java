@@ -25,11 +25,14 @@ public class CakesDecorationsDB implements DatabaseAssoc<CakesDecorations> {
         int inputDecID = cakesDecorations.getDecorations();
 
         for(int i=0; i<this.cakesDecorations.size(); i++){
-            if(this.cakesDecorations.get(i).getCakeID()==inputCakeID &&
-                    this.cakesDecorations.get(i).getDecorations()==inputDecID){
+            if(this.cakesDecorations.get(i).getCakeID()==inputCakeID){
 
-                this.cakesDecorations.get(i).setCakeID(cakesDecorations.getCakeID());
-                this.cakesDecorations.get(i).setDecorations(cakesDecorations.getDecorations());
+                CakesDecorations cd = new CakesDecorations();
+                cd.setCakeID(cakesDecorations.getCakeID());
+                cd.setDecorations(cakesDecorations.getDecorations());
+
+                this.cakesDecorations.remove(i);
+                this.cakesDecorations.add(i, cd);
 
                 return;
             }

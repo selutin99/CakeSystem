@@ -9,15 +9,21 @@ import java.util.List;
 
 public class App {
     public static void main(String[] args) {
-        Cakes pm = new Cakes(1, "Птичье молоко", 33.03F, 1, 2);
-
         HashMap<String, List<Cakes>> context = new HashMap<>();
-        CakesDB cakesDB = new CakesDB();
-        ImplUnitOfWork<Cakes> cakesRepo = new ImplUnitOfWork<>(context, cakesDB);
+        CakesDB db = new CakesDB();
+        ImplUnitOfWork<Cakes> repo = new ImplUnitOfWork(context, db);
 
-        cakesRepo.create(pm);
-        cakesRepo.commit();
+        Cakes ck = new Cakes(1,"Чизкейк",33.3F,1,2);
 
-        System.out.println(cakesRepo.find(1));
+        repo.create(ck);
+        repo.commit();
+
+        repo.edit(new Cakes(1,"Медовик", 44.4F, 2, 3));
+        repo.commit();
+
+        repo.delete(repo.find(1));
+        repo.commit();
+
+        System.out.println(repo.find(1));
     }
 }

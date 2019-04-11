@@ -25,9 +25,13 @@ public class CharacteristicsDB implements DatabaseEntity<Characteristics> {
         for(int i=0; i<this.characteristics.size(); i++){
             if(this.characteristics.get(i).getId()==inputID){
 
-                this.characteristics.get(i).setId(characteristics.getId());
-                this.characteristics.get(i).setName(characteristics.getName());
-                this.characteristics.get(i).setValue(characteristics.getValue());
+                Characteristics ch = new Characteristics();
+                ch.setId(characteristics.getId());
+                ch.setName(characteristics.getName());
+                ch.setValue(characteristics.getValue());
+
+                this.characteristics.remove(i);
+                this.characteristics.add(i, ch);
 
                 return;
             }

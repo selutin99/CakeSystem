@@ -1,5 +1,6 @@
 package com.cake.system.repositories;
 
+import com.cake.system.storages.database.DatabaseAssoc;
 import com.cake.system.storages.database.DatabaseEntity;
 import lombok.extern.log4j.Log4j2;
 
@@ -8,13 +9,13 @@ import java.util.List;
 import java.util.Map;
 
 @Log4j2
-public class ImplUnitOfWork<T> implements UnitOfWork<T>{
+public class ImplUnitOfWorkAssoc<T> implements UnitOfWorkAssoc<T>{
 
     //Хранилище действий
     private Map<String, List<T>> context;
-    private DatabaseEntity database;
+    private DatabaseAssoc database;
 
-    public ImplUnitOfWork(Map<String, List<T>> context, DatabaseEntity database){
+    public ImplUnitOfWorkAssoc(Map<String, List<T>> context, DatabaseAssoc database){
         this.context = context;
         this.database = database;
     }
@@ -38,9 +39,9 @@ public class ImplUnitOfWork<T> implements UnitOfWork<T>{
     }
 
     @Override
-    public T find(int id) {
-        log.info("Поиск с id: "+id);
-        return (T) database.findById(id);
+    public T find(int firstKey, int secondKey) {
+        log.info("Поиск с id: "+firstKey+" и "+secondKey);
+        return (T) database.findById(firstKey, secondKey);
     }
 
     private void registerOperation(T entity, String operation){
@@ -67,8 +68,8 @@ public class ImplUnitOfWork<T> implements UnitOfWork<T>{
         if(context.containsKey(UnitOfWork.DELETE)){
             commitDelete();
         }
-        log.info("Транзакция завершена");
         context.clear();
+        log.info("Транзакция завершена");
     }
 
     private void commitInsert(){
