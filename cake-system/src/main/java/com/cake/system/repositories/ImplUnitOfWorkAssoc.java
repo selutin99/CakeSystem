@@ -24,18 +24,21 @@ public class ImplUnitOfWorkAssoc<T> implements UnitOfWorkAssoc<T>{
     public void create(T entity) {
         log.info("Добавление "+entity.toString());
         registerOperation(entity, UnitOfWork.INSERT);
+        commit();
     }
 
     @Override
     public void edit(T entity) {
         log.info("Редактирование "+entity.toString());
         registerOperation(entity, UnitOfWork.EDIT);
+        commit();
     }
 
     @Override
     public void delete(T entity) {
         log.info("Удаление "+entity.toString());
         registerOperation(entity, UnitOfWork.DELETE);
+        commit();
     }
 
     @Override

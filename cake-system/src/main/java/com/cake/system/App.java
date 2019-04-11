@@ -16,13 +16,10 @@ public class App {
         Cakes ck = new Cakes(1,"Чизкейк",33.3F,1,2);
 
         repo.create(ck);
-        repo.commit();
 
         repo.edit(new Cakes(1,"Медовик", 44.4F, 2, 3));
-        repo.commit();
 
         repo.delete(repo.find(1));
-        repo.commit();
 
         System.out.println(repo.find(1));
     }
