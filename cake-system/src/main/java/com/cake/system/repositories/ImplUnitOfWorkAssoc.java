@@ -1,7 +1,6 @@
 package com.cake.system.repositories;
 
 import com.cake.system.storages.database.DatabaseAssoc;
-import com.cake.system.storages.database.DatabaseEntity;
 import lombok.extern.log4j.Log4j2;
 
 import java.util.ArrayList;
@@ -39,6 +38,12 @@ public class ImplUnitOfWorkAssoc<T> implements UnitOfWorkAssoc<T>{
         log.info("Удаление "+entity.toString());
         registerOperation(entity, UnitOfWork.DELETE);
         commit();
+    }
+
+    @Override
+    public List<T> getAll() {
+        log.info("Вовзращаю все записи");
+        return database.getAll();
     }
 
     @Override
