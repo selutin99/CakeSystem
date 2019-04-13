@@ -11,18 +11,39 @@ import java.util.List;
 
 public class FindCakeImpl implements FindCakeService {
 
-    /*Это мой велосипед для autowired.
+    /*Это мой велосипед autowired.
       Таких велосипедов много, но это мой.
       Мой велосипед - мой лучший друг. Он - моя жизнь.*/
 
     private ImplUnitOfWork<Cakes> cakesRepo;
+
+    private ImplUnitOfWork<Decorations> decoRepo;
     private ImplUnitOfWork<CakesDecorations> cakesDecoRepo;
 
+    private ImplUnitOfWork<CakesBases> cakesBasesRepo;
 
     public FindCakeImpl(ImplUnitOfWork<Cakes> cakesRepo,
+                        ImplUnitOfWork<Decorations> decoRepo,
+                        ImplUnitOfWork<CakesDecorations> cakesDecoRepo,
+                        ImplUnitOfWork<CakesBases> cakesBasesRepo) {
+        this.cakesRepo = cakesRepo;
+        this.decoRepo = decoRepo;
+        this.cakesDecoRepo = cakesDecoRepo;
+        this.cakesBasesRepo = cakesBasesRepo;
+    }
+
+    public FindCakeImpl(ImplUnitOfWork<Cakes> cakesRepo,
+                        ImplUnitOfWork<Decorations> decoRepo,
                         ImplUnitOfWork<CakesDecorations> cakesDecoRepo) {
         this.cakesRepo = cakesRepo;
+        this.decoRepo = decoRepo;
         this.cakesDecoRepo = cakesDecoRepo;
+    }
+
+    public FindCakeImpl(ImplUnitOfWork<Cakes> cakesRepo,
+                        ImplUnitOfWork<CakesBases> cakesBasesRepo) {
+        this.cakesRepo = cakesRepo;
+        this.cakesBasesRepo = cakesBasesRepo;
     }
 
     @Override
@@ -59,5 +80,13 @@ public class FindCakeImpl implements FindCakeService {
             }
         }
         return finalList;
+    }
+
+
+    public boolean <T> baseExists(int id){
+        List<CakesBases> baseList = cakesBasesRepo.getAll();
+        for(CakesBases cb: baseList){
+
+        }
     }
 }
