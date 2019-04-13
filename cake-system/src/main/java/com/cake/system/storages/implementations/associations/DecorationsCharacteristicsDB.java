@@ -66,5 +66,10 @@ public class DecorationsCharacteristicsDB implements DatabaseAssoc<DecorationsCh
         }
         return null;
     }
+
+    @Override
+    public List<DecorationsCharacteristics> getAll() {
+        return new ArrayList<>(this.decorationsCharacteristics);
+    }
 }
 

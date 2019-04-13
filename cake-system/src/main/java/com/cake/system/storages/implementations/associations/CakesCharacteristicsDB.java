@@ -62,4 +62,9 @@ public class CakesCharacteristicsDB implements DatabaseAssoc<CakesCharacteristic
         }
         return null;
     }
+
+    @Override
+    public List<CakesCharacteristics> getAll() {
+        return new ArrayList<>(this.cakesCharacteristics);
+    }
 }

@@ -41,6 +41,12 @@ public class ImplUnitOfWork<T> implements UnitOfWork<T>{
     }
 
     @Override
+    public List<T> getAll() {
+        log.info("Вовзращаю все записи");
+        return database.getAll();
+    }
+
+    @Override
     public T find(int id) {
         log.info("Поиск с id: "+id);
         return (T) database.findById(id);

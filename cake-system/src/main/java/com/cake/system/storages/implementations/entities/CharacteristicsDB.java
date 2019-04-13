@@ -58,4 +58,9 @@ public class CharacteristicsDB implements DatabaseEntity<Characteristics> {
         }
         return null;
     }
+
+    @Override
+    public List<Characteristics> getAll() {
+        return new ArrayList<>(this.characteristics);
+    }
 }

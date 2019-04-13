@@ -59,6 +59,11 @@ public class DecorationsDB implements DatabaseEntity<Decorations> {
         }
         return null;
     }
+
+    @Override
+    public List<Decorations> getAll() {
+        return new ArrayList<>(this.decorations);
+    }
 }
 
 

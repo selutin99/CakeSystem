@@ -63,5 +63,10 @@ public class CakesDecorationsDB implements DatabaseAssoc<CakesDecorations> {
         }
         return null;
     }
+
+    @Override
+    public List<CakesDecorations> getAll() {
+        return new ArrayList<>(this.cakesDecorations);
+    }
 }
 

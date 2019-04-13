@@ -57,4 +57,9 @@ public class CakesBasesDB implements DatabaseEntity<CakesBases> {
         }
         return null;
     }
+
+    @Override
+    public List<CakesBases> getAll() {
+        return new ArrayList<>(this.cakesBases);
+    }
 }

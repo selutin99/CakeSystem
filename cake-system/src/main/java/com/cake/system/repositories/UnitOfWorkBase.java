@@ -1,5 +1,7 @@
 package com.cake.system.repositories;
 
+import java.util.List;
+
 public interface UnitOfWorkBase<T> {
     String INSERT = "INSERT";
     String DELETE = "DELETE";
@@ -13,6 +15,9 @@ public interface UnitOfWorkBase<T> {
 
     //Удалить сущность
     void delete(T entity);
+
+    //Найти все сущности
+    List<T> getAll();
 
     //Внести изменения
     void commit();

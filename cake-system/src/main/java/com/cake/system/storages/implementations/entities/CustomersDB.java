@@ -58,5 +58,10 @@ public class CustomersDB implements DatabaseEntity<Customers> {
         }
         return null;
     }
+
+    @Override
+    public List<Customers> getAll() {
+        return new ArrayList<>(this.customers);
+    }
 }
 
