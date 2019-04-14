@@ -5,5 +5,5 @@ import com.cake.system.entity.Decorations;
 
 public interface Order {
     //Принимает заказ
-    void acceptOrder(Decorations decorations, CakesBases cakesBases);
+    void acceptOrder(int cakeID, Decorations decorations, CakesBases cakesBases);
 }

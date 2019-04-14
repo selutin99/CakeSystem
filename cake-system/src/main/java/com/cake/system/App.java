@@ -48,7 +48,7 @@ public class App {
         cdRepo.create(cakesDecorations);
         cdRepo.create(new CakesDecorations(2, 1));
 
-        FindCakeImpl find = new FindCakeImpl(repo, repoDeco, cdRepo);
+        FindCakeImpl find = new FindCakeImpl(repo, repoDeco, cdRepo, repoBase);
         System.out.println(find.findCakeByDecoAndBase(1, 3));
     }
 }

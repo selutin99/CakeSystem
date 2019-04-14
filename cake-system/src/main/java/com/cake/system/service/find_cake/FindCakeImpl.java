@@ -6,6 +6,7 @@ import com.cake.system.entity.Decorations;
 import com.cake.system.entity.associations.CakesDecorations;
 import com.cake.system.repositories.ImplUnitOfWork;
 import com.cake.system.repositories.ImplUnitOfWorkAssoc;
+import com.cake.system.service.CheckExist;
 import lombok.Setter;
 
 import java.util.ArrayList;
@@ -16,7 +17,6 @@ public class FindCakeImpl implements FindCakeService {
     /*Это мой велосипед autowired.
       Таких велосипедов много, но это мой.
       Мой велосипед - мой лучший друг. Он - моя жизнь.*/
-
     @Setter
     private ImplUnitOfWork<Cakes> cakesRepo;
 
@@ -66,7 +66,7 @@ public class FindCakeImpl implements FindCakeService {
 
         List<Cakes> cakes = cakesRepo.getAll();
         for(Cakes cs: cakes){
-            if(cs.getCakeBase()==cakesBasesID && baseExist(cakesBasesRepo, cakesBasesID)){
+            if(cs.getCakeBase()==cakesBasesID && CheckExist.baseExist(cakesBasesRepo, cakesBasesID)){
                 finalList.add(cs);
             }
         }
@@ -87,7 +87,7 @@ public class FindCakeImpl implements FindCakeService {
 
         List<CakesDecorations> cakesDeco = cakesDecoRepo.getAll();
         for(CakesDecorations cs: cakesDeco){
-            if(cs.getDecorations()==decoID && decoExist(decoRepo, decoID)){
+            if(cs.getDecorations()==decoID && CheckExist.decoExist(decoRepo, decoID)){
                 finalList.add(cakesRepo.find(cs.getCakeID()));
             }
         }
@@ -110,36 +110,18 @@ public class FindCakeImpl implements FindCakeService {
         List<CakesDecorations> cakesDeco = cakesDecoRepo.getAll();
 
         for(CakesDecorations cs: cakesDeco){
-            if(cs.getDecorations()==decoID && decoExist(decoRepo, decoID)){
+            if(cs.getDecorations()==decoID && CheckExist.decoExist(decoRepo, decoID)){
                 neccessaryCakes.add(cakesRepo.find(cs.getCakeID()));
             }
         }
 
         for(Cakes cs: neccessaryCakes){
-            if(cs.getCakeBase()==cakesBasesID && baseExist(cakesBasesRepo, cakesBasesID)){
+            if(cs.getCakeBase()==cakesBasesID && CheckExist.baseExist(cakesBasesRepo, cakesBasesID)){
                 finalList.add(cs);
             }
         }
         return finalList;
     }
 
-    private boolean baseExist(ImplUnitOfWork<CakesBases> cakesBasesRepo, int cakeBase){
-        List<CakesBases> list = cakesBasesRepo.getAll();
-        for(CakesBases ck: list){
-            if(ck.getId()==cakeBase){
-                return true;
-            }
-        }
-        return false;
-    }
 
-    private boolean decoExist(ImplUnitOfWork<Decorations> decoRepo, int decoID){
-        List<Decorations> list = decoRepo.getAll();
-        for(Decorations deco: list){
-            if(deco.getId()==decoID){
-                return true;
-            }
-        }
-        return false;
-    }
 }
