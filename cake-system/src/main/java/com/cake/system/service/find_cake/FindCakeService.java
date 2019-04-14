@@ -14,4 +14,8 @@ public interface FindCakeService {
     //Искать по украшениям
     List<Cakes> findCakeByDecor(Decorations deco);
     List<Cakes> findCakeByDecor(int decoID);
+
+    //Искать по украшениям и основам
+    List<Cakes> findCakeByDecoAndBase(int decoID, int cakesBasesID);
+    List<Cakes> findCakeByDecoAndBase(Decorations deco, CakesBases cakesBases);
 }

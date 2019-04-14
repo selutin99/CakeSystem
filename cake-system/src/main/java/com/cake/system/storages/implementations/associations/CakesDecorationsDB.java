@@ -16,6 +16,12 @@ public class CakesDecorationsDB implements DatabaseAssoc<CakesDecorations> {
 
     @Override
     public void insert(CakesDecorations cakesDecorations) {
+        for(CakesDecorations ck: this.cakesDecorations){
+            if(ck.getCakeID()==cakesDecorations.getCakeID() &&
+                    ck.getDecorations()==cakesDecorations.getDecorations()){
+                throw new IllegalArgumentException("Элемент с таким id уже существует!");
+            }
+        }
         this.cakesDecorations.add(cakesDecorations);
     }
 
@@ -37,6 +43,7 @@ public class CakesDecorationsDB implements DatabaseAssoc<CakesDecorations> {
                 return;
             }
         }
+        throw new IllegalArgumentException("Элемента не существует!");
     }
 
     @Override
@@ -52,6 +59,7 @@ public class CakesDecorationsDB implements DatabaseAssoc<CakesDecorations> {
                 return;
             }
         }
+        throw new IllegalArgumentException("Элемента не существует!");
     }
 
     @Override

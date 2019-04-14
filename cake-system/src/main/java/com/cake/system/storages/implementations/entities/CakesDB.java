@@ -16,6 +16,11 @@ public class CakesDB implements DatabaseEntity<Cakes> {
 
     @Override
     public void insert(Cakes cakes) {
+        for(Cakes ck: this.cakes){
+            if(ck.getId()==cakes.getId()){
+                throw new IllegalArgumentException("Элемент с таким id уже существует!");
+            }
+        }
         this.cakes.add(cakes);
     }
 
@@ -35,8 +40,10 @@ public class CakesDB implements DatabaseEntity<Cakes> {
                 this.cakes.remove(i);
                 this.cakes.add(i, cake);
 
+                return;
             }
         }
+        throw new IllegalArgumentException("Элемента не существует!");
     }
 
     @Override
@@ -45,8 +52,10 @@ public class CakesDB implements DatabaseEntity<Cakes> {
         for(int i=0; i<this.cakes.size(); i++){
             if(this.cakes.get(i).getId()==inputID){
                 this.cakes.remove(i);
+                return;
             }
         }
+        throw new IllegalArgumentException("Элемента не существует!");
     }
 
     @Override

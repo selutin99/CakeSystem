@@ -16,6 +16,11 @@ public class CustomersDB implements DatabaseEntity<Customers> {
 
     @Override
     public void insert(Customers customers) {
+        for(Customers ck: this.customers){
+            if(ck.getId()==customers.getId()){
+                throw new IllegalArgumentException("Элемент с таким id уже существует!");
+            }
+        }
         this.customers.add(customers);
     }
 
@@ -36,6 +41,7 @@ public class CustomersDB implements DatabaseEntity<Customers> {
                 return;
             }
         }
+        throw new IllegalArgumentException("Элемента не существует!");
     }
 
     @Override
@@ -47,6 +53,7 @@ public class CustomersDB implements DatabaseEntity<Customers> {
                 return;
             }
         }
+        throw new IllegalArgumentException("Элемента не существует!");
     }
 
     @Override

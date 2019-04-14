@@ -16,6 +16,12 @@ public class CakesCharacteristicsDB implements DatabaseAssoc<CakesCharacteristic
 
     @Override
     public void insert(CakesCharacteristics cakesCharacteristics) {
+        for(CakesCharacteristics ck: this.cakesCharacteristics){
+            if(ck.getCakeID()==cakesCharacteristics.getCakeID() &&
+                    ck.getCharacteristicID()==cakesCharacteristics.getCharacteristicID()){
+                throw new IllegalArgumentException("Элемент с таким id уже существует!");
+            }
+        }
         this.cakesCharacteristics.add(cakesCharacteristics);
     }
 
@@ -36,6 +42,7 @@ public class CakesCharacteristicsDB implements DatabaseAssoc<CakesCharacteristic
                 return;
             }
         }
+        throw new IllegalArgumentException("Элемента не существует!");
     }
 
     @Override
@@ -51,6 +58,7 @@ public class CakesCharacteristicsDB implements DatabaseAssoc<CakesCharacteristic
                 return;
             }
         }
+        throw new IllegalArgumentException("Элемента не существует!");
     }
 
     @Override

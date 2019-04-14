@@ -16,6 +16,11 @@ public class CharacteristicsDB implements DatabaseEntity<Characteristics> {
 
     @Override
     public void insert(Characteristics characteristics) {
+        for(Characteristics ck: this.characteristics){
+            if(ck.getId()==characteristics.getId()){
+                throw new IllegalArgumentException("Элемент с таким id уже существует!");
+            }
+        }
         this.characteristics.add(characteristics);
     }
 
@@ -36,6 +41,7 @@ public class CharacteristicsDB implements DatabaseEntity<Characteristics> {
                 return;
             }
         }
+        throw new IllegalArgumentException("Элемента не существует!");
     }
 
     @Override
@@ -47,6 +53,7 @@ public class CharacteristicsDB implements DatabaseEntity<Characteristics> {
                 return;
             }
         }
+        throw new IllegalArgumentException("Элемента не существует!");
     }
 
     @Override
