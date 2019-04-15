@@ -6,6 +6,7 @@ import com.cake.system.entity.Decorations;
 import com.cake.system.entity.associations.CakesDecorations;
 import com.cake.system.repositories.ImplUnitOfWork;
 import com.cake.system.repositories.ImplUnitOfWorkAssoc;
+import com.cake.system.service.Connection;
 import com.cake.system.service.find_cake.FindCakeImpl;
 import com.cake.system.storages.implementations.associations.CakesDecorationsDB;
 import com.cake.system.storages.implementations.entities.CakesBasesDB;
@@ -17,6 +18,7 @@ import java.util.List;
 
 public class App {
     public static void main(String[] args) {
+        /*
         //DECORATIONS
         HashMap<String, List<Decorations>> contextDeco = new HashMap<>();
         DecorationsDB dbDeco = new DecorationsDB();
@@ -46,9 +48,19 @@ public class App {
         ImplUnitOfWorkAssoc<CakesDecorations> cdRepo = new ImplUnitOfWorkAssoc(contextCD, cdDB);
         CakesDecorations cakesDecorations = new CakesDecorations(1, 1);
         cdRepo.create(cakesDecorations);
-        cdRepo.create(new CakesDecorations(2, 1));
+        cdRepo.create(new CakesDecorations(2, 1));*/
 
-        FindCakeImpl find = new FindCakeImpl(repo, repoDeco, cdRepo, repoBase);
-        System.out.println(find.findCakeByDecoAndBase(1, 3));
+        Connection con = Connection.getInstance();
+        ImplUnitOfWork<Cakes> repo = con.getCakesRepo();
+        Cakes ck = new Cakes(1, "Чизкейк", 33.3F, 1, 3);
+        Cakes ck2 = new Cakes(2, "Птичье молоко", 54.3F, 1, 3);
+        repo.create(ck);
+        repo.create(ck2);
+        con.setCakesRepo(repo);
+
+        System.out.println(con.getCakesRepo().find(1));
+        /*
+        FindCakeImpl find = new FindCakeImpl();
+        System.out.println(find.findCakeByDecoAndBase(1, 3));*/
     }
 }

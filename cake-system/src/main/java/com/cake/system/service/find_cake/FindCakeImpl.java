@@ -7,49 +7,31 @@ import com.cake.system.entity.associations.CakesDecorations;
 import com.cake.system.repositories.ImplUnitOfWork;
 import com.cake.system.repositories.ImplUnitOfWorkAssoc;
 import com.cake.system.service.CheckExist;
+import com.cake.system.service.Connection;
 import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FindCakeImpl implements FindCakeService {
-
     /*Это мой велосипед autowired.
       Таких велосипедов много, но это мой.
       Мой велосипед - мой лучший друг. Он - моя жизнь.*/
-    @Setter
+    Connection con = Connection.getInstance();
+
     private ImplUnitOfWork<Cakes> cakesRepo;
 
-    @Setter
     private ImplUnitOfWork<Decorations> decoRepo;
-    @Setter
+
     private ImplUnitOfWorkAssoc<CakesDecorations> cakesDecoRepo;
 
-    @Setter
     private ImplUnitOfWork<CakesBases> cakesBasesRepo;
 
-    public FindCakeImpl(ImplUnitOfWork<Cakes> cakesRepo,
-                        ImplUnitOfWork<Decorations> decoRepo,
-                        ImplUnitOfWorkAssoc<CakesDecorations> cakesDecoRepo,
-                        ImplUnitOfWork<CakesBases> cakesBasesRepo) {
-        this.cakesRepo = cakesRepo;
-        this.decoRepo = decoRepo;
-        this.cakesDecoRepo = cakesDecoRepo;
-        this.cakesBasesRepo = cakesBasesRepo;
-    }
-
-    public FindCakeImpl(ImplUnitOfWork<Cakes> cakesRepo,
-                        ImplUnitOfWork<Decorations> decoRepo,
-                        ImplUnitOfWorkAssoc<CakesDecorations> cakesDecoRepo) {
-        this.cakesRepo = cakesRepo;
-        this.decoRepo = decoRepo;
-        this.cakesDecoRepo = cakesDecoRepo;
-    }
-
-    public FindCakeImpl(ImplUnitOfWork<Cakes> cakesRepo,
-                        ImplUnitOfWork<CakesBases> cakesBasesRepo) {
-        this.cakesRepo = cakesRepo;
-        this.cakesBasesRepo = cakesBasesRepo;
+    public FindCakeImpl() {
+        this.cakesRepo = con.getCakesRepo();
+        this.decoRepo = con.getDecorationsRepo();
+        this.cakesDecoRepo = con.getCakesDecoRepo();
+        this.cakesBasesRepo = con.getCakesBasesRepo();
     }
 
     @Override
