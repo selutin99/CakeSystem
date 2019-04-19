@@ -1,6 +1,5 @@
 package com.cake.system.service.CRUD;
 
-import com.cake.system.entity.associations.CakesCharacteristics;
 import com.cake.system.entity.associations.DecorationsCharacteristics;
 import com.cake.system.repositories.ImplUnitOfWorkAssoc;
 import com.cake.system.service.Connection;
@@ -15,25 +14,16 @@ public class DecorationsCharacteristicsService {
         this.repo = con.getDecoCharRepo();
     }
 
-    public void add(DecorationsCharacteristics data){
-        if(data==null){
-            throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
-        }
-        this.repo.create(data);
+    public void add(int first, int second){
+        this.repo.create(new DecorationsCharacteristics(first, second));
     }
 
-    public void edit(DecorationsCharacteristics data){
-        if(data==null){
-            throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
-        }
-        this.repo.edit(data);
+    public void edit(int first, int second){
+        this.repo.edit(new DecorationsCharacteristics(first, second));
     }
 
-    public void delete(DecorationsCharacteristics data){
-        if(data==null){
-            throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
-        }
-        this.repo.delete(data);
+    public void delete(int first, int second){
+        this.repo.delete(new DecorationsCharacteristics(first, second));
     }
 
     public List<DecorationsCharacteristics> getAll(){

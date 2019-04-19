@@ -15,25 +15,16 @@ public class CakesDecorationsService {
         this.repo = con.getCakesDecoRepo();
     }
 
-    public void add(CakesDecorations data){
-        if(data==null){
-            throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
-        }
-        this.repo.create(data);
+    public void add(int first, int second){
+        this.repo.create(new CakesDecorations(first, second));
     }
 
-    public void edit(CakesDecorations data){
-        if(data==null){
-            throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
-        }
-        this.repo.edit(data);
+    public void edit(int first, int second){
+        this.repo.edit(new CakesDecorations(first, second));
     }
 
-    public void delete(CakesDecorations data){
-        if(data==null){
-            throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
-        }
-        this.repo.delete(data);
+    public void delete(int first, int second){
+        this.repo.delete(new CakesDecorations(first, second));
     }
 
     public List<CakesDecorations> getAll(){

@@ -12,11 +12,9 @@ public class CakesController {
         this.service = new CakesService();
     }
 
-    public void add(Cakes data){
-        if(data==null){
-            throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
-        }
-        this.service.add(data);
+    public void add(int id, int customerID, String name, float price, int cakeBase){
+        //TODO я устал и хочу спать
+        //this.service.add(id, customerID, name, price, cakeBase);
     }
 
     public void edit(Cakes data){

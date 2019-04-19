@@ -3,16 +3,21 @@ package com.cake.system.views;
 import com.cake.system.controllers.*;
 import com.cake.system.entity.CakesBases;
 
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class CakeOrderView {
-    private static int id;
+    private static int customerID;
+    private static int cakeID;
 
     private Scanner sc;
 
     //Controllers
     private CakesController cakes;
     private CustomersController customer;
+
+    private DecorationsController decorations;
+    private CharacteristicsController characteristics;
 
     //Associations controllers
     private CakesDecorationsController cakesDecor;
@@ -24,6 +29,9 @@ public class CakeOrderView {
     public CakeOrderView(Scanner scanner){
         cakes = new CakesController();
         customer = new CustomersController();
+
+        decorations = new DecorationsController();
+        characteristics = new CharacteristicsController();
 
         cakesDecor = new CakesDecorationsController();
         cakesChar = new CakesCharacteristicsController();
@@ -67,8 +75,24 @@ public class CakeOrderView {
     private void makeOrder() {
         System.out.println("Добавляем клиента");
         addCustomer();
-        System.out.println("Клиент успешно добавлен");
-        System.out.println();
+        System.out.println("Клиент успешно добавлен\n");
+
+        System.out.println("Введите название торта");
+        String name = sc.next();
+
+        System.out.println("Выберите основу торта");
+        int cakeBaseID = addCakeBase();
+        System.out.println("Основа успешно добавлена");
+
+        System.out.println("Выберите украшение торта");
+        int decorID = addDecor();
+        System.out.println("Украшение успешно добавлена");
+
+        System.out.println("Выберите характеристику торта");
+        int charID = addCharacteristics();
+        System.out.println("Характеристика успешно добавлена");
+
+
     }
 
     private void addCustomer(){
@@ -78,6 +102,41 @@ public class CakeOrderView {
         System.out.println("Введите фамилию получателя");
         String lastName = sc.next();
 
-        customer.add(++id, name, lastName);
+        customer.add(++customerID, name, lastName);
+    }
+
+    private int addCakeBase(){
+        System.out.println("Выберите id основы");
+
+        Iterator iterator = cakesBases.getAll().iterator();
+        itera(iterator);
+        int id = Integer.parseInt(sc.next());
+        return id;
+    }
+
+    private int addDecor(){
+        System.out.println("Выберите id украшения");
+
+        Iterator iterator = decorations.getAll().iterator();
+        itera(iterator);
+        int id = Integer.parseInt(sc.next());
+        return id;
+    }
+
+    private int addCharacteristics(){
+        System.out.println("Выберите id характеристики");
+
+        Iterator iterator = decorations.getAll().iterator();
+        itera(iterator);
+        int id = Integer.parseInt(sc.next());
+        return id;
+    }
+
+    private void itera(Iterator iterator){
+        System.out.println("==============================");
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+        System.out.println("==============================");
     }
 }

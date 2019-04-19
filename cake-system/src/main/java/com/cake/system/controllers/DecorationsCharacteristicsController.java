@@ -1,8 +1,6 @@
 package com.cake.system.controllers;
 
-import com.cake.system.entity.associations.CakesCharacteristics;
 import com.cake.system.entity.associations.DecorationsCharacteristics;
-import com.cake.system.service.CRUD.CakesCharacteristicsService;
 import com.cake.system.service.CRUD.DecorationsCharacteristicsService;
 
 import java.util.List;
@@ -14,25 +12,16 @@ public class DecorationsCharacteristicsController {
         this.service = new DecorationsCharacteristicsService();
     }
 
-    public void add(DecorationsCharacteristics data){
-        if(data==null){
-            throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
-        }
-        this.service.add(data);
+    public void add(int first, int second){
+        this.service.add(first, second);
     }
 
-    public void edit(DecorationsCharacteristics data){
-        if(data==null){
-            throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
-        }
-        this.service.edit(data);
+    public void edit(int first, int second){
+        this.service.edit(first, second);
     }
 
-    public void delete(DecorationsCharacteristics data){
-        if(data==null){
-            throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
-        }
-        this.service.delete(data);
+    public void delete(int first, int second){
+        this.service.delete(first, second);
     }
 
     public List<DecorationsCharacteristics> getAll(){
