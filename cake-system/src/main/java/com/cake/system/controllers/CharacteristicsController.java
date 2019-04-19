@@ -12,25 +12,16 @@ public class CharacteristicsController {
         this.service = new CharacteristicsService();
     }
 
-    public void add(Characteristics data){
-        if(data==null){
-            throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
-        }
-        this.service.add(data);
+    public void add(int id, String name, String value){
+        this.service.add(id, name, value);
     }
 
-    public void edit(Characteristics data){
-        if(data==null){
-            throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
-        }
-        this.service.edit(data);
+    public void edit(int id, String name, String value){
+        this.service.edit(id, name, value);
     }
 
-    public void delete(Characteristics data){
-        if(data==null){
-            throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
-        }
-        this.service.delete(data);
+    public void delete(int id, String name, String value){
+        this.service.delete(id, name, value);
     }
 
     public List<Characteristics> getAll(){

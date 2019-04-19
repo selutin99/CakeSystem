@@ -60,7 +60,7 @@ public class MainMenu {
         DecorationsView dv = new DecorationsView(sc);
     }
 
-    private void makeOrderMenu() {}
+    private void characteristicsMenu() { CharacteristicsView chv = new CharacteristicsView(sc); }
 
-    private void characteristicsMenu() {}
+    private void makeOrderMenu() {}
 }

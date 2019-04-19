@@ -14,25 +14,25 @@ public class CharacteristicsService {
         this.repo = con.getCharacteristicsRepo();
     }
 
-    public void add(Characteristics data){
-        if(data==null){
+    public void add(int id, String name, String value){
+        if(name==null || value==null){
             throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
         }
-        this.repo.create(data);
+        this.repo.create(new Characteristics(id, name, value));
     }
 
-    public void edit(Characteristics data){
-        if(data==null){
+    public void edit(int id, String name, String value){
+        if(name==null || value==null){
             throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
         }
-        this.repo.edit(data);
+        this.repo.edit(new Characteristics(id, name, value));
     }
 
-    public void delete(Characteristics data){
-        if(data==null){
+    public void delete(int id, String name, String value){
+        if(name==null || value==null){
             throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
         }
-        this.repo.delete(data);
+        this.repo.delete(new Characteristics(id, name, value));
     }
 
     public List<Characteristics> getAll(){
