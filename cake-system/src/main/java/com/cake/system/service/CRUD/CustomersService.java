@@ -14,25 +14,25 @@ public class CustomersService {
         this.repo = con.getCustomersRepo();
     }
 
-    public void add(Customers data){
-        if(data==null){
+    public void add(int id, String firstName, String lastName){
+        if(firstName==null || lastName==null){
             throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
         }
-        this.repo.create(data);
+        this.repo.create(new Customers(id, firstName, lastName));
     }
 
-    public void edit(Customers data){
-        if(data==null){
+    public void edit(int id, String firstName, String lastName){
+        if(firstName==null || lastName==null){
             throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
         }
-        this.repo.edit(data);
+        this.repo.edit(new Customers(id, firstName, lastName));
     }
 
-    public void delete(Customers data){
-        if(data==null){
+    public void delete(int id, String firstName, String lastName){
+        if(firstName==null || lastName==null){
             throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
         }
-        this.repo.delete(data);
+        this.repo.delete(new Customers(id, firstName, lastName));
     }
 
     public List<Customers> getAll(){

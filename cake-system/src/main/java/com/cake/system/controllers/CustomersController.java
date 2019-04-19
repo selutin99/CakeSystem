@@ -12,25 +12,16 @@ public class CustomersController {
         this.service = new CustomersService();
     }
 
-    public void add(Customers data){
-        if(data==null){
-            throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
-        }
-        this.service.add(data);
+    public void add(int id, String firstName, String lastName){
+        this.service.add(id, firstName, lastName);
     }
 
-    public void edit(Customers data){
-        if(data==null){
-            throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
-        }
-        this.service.edit(data);
+    public void edit(int id, String firstName, String lastName){
+        this.service.edit(id, firstName, lastName);
     }
 
-    public void delete(Customers data){
-        if(data==null){
-            throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
-        }
-        this.service.delete(data);
+    public void delete(int id, String firstName, String lastName){
+        this.service.delete(id, firstName, lastName);
     }
 
     public List<Customers> getAll(){
