@@ -14,25 +14,22 @@ public class DecorationsService {
         this.repo = con.getDecorationsRepo();
     }
 
-    public void add(Decorations data){
-        if(data==null){
+    public void add(int id, String name, float price){
+        if(name==null){
             throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
         }
-        this.repo.create(data);
+        this.repo.create(new Decorations(id, name, price));
     }
 
-    public void edit(Decorations data){
-        if(data==null){
+    public void edit(int id, String name, float price){
+        if(name==null){
             throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
         }
-        this.repo.edit(data);
+        this.repo.edit(new Decorations(id, name, price));
     }
 
-    public void delete(Decorations data){
-        if(data==null){
-            throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
-        }
-        this.repo.delete(data);
+    public void delete(int id, String name, float price){
+        this.repo.delete(new Decorations(id, name, price));
     }
 
     public List<Decorations> getAll(){

@@ -12,25 +12,16 @@ public class CakesBasesController {
         this.service = new CakesBasesService();
     }
 
-    public void add(CakesBases data){
-        if(data==null){
-            throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
-        }
-        this.service.add(data);
+    public void add(int id, String name){
+        this.service.add(id, name);
     }
 
-    public void edit(CakesBases data){
-        if(data==null){
-            throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
-        }
-        this.service.edit(data);
+    public void edit(int id, String name){
+        this.service.edit(id, name);
     }
 
-    public void delete(CakesBases data){
-        if(data==null){
-            throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
-        }
-        this.service.delete(data);
+    public void delete(int id, String name){
+        this.service.delete(id, name);
     }
 
     public List<CakesBases> getAll(){

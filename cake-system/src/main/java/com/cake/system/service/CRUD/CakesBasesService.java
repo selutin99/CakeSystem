@@ -14,25 +14,25 @@ public class CakesBasesService {
         this.repo = con.getCakesBasesRepo();
     }
 
-    public void add(CakesBases data){
-        if(data==null){
+    public void add(int id, String name){
+        if(name==null){
             throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
         }
-        this.repo.create(data);
+        this.repo.create(new CakesBases(id, name));
     }
 
-    public void edit(CakesBases data){
-        if(data==null){
+    public void edit(int id, String name){
+        if(name==null){
             throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
         }
-        this.repo.edit(data);
+        this.repo.edit(new CakesBases(id, name));
     }
 
-    public void delete(CakesBases data){
-        if(data==null){
+    public void delete(int id, String name){
+        if(name==null){
             throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
         }
-        this.repo.delete(data);
+        this.repo.delete(new CakesBases(id, name));
     }
 
     public List<CakesBases> getAll(){
