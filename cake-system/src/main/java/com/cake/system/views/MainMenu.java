@@ -62,5 +62,5 @@ public class MainMenu {
 
     private void characteristicsMenu() { CharacteristicsView chv = new CharacteristicsView(sc); }
 
-    private void makeOrderMenu() {}
+    private void makeOrderMenu() { CakeOrderView cvv = new CakeOrderView(sc); }
 }

@@ -1,9 +1,9 @@
 package com.cake.system.views;
 
 import com.cake.system.controllers.*;
-import com.cake.system.entity.CakesBases;
 
 import java.util.Iterator;
+import java.util.Random;
 import java.util.Scanner;
 
 public class CakeOrderView {
@@ -92,7 +92,16 @@ public class CakeOrderView {
         int charID = addCharacteristics();
         System.out.println("Характеристика успешно добавлена");
 
+        Random r = new Random();
+        double price = 32.2 + r.nextDouble() * (500.5 - 32.2);
 
+        cakes.add(++cakeID, customerID, name, (float)price, cakeBaseID);
+        //Для ассоциаций
+        cakesDecor.add(cakeID, decorID);
+        cakesChar.add(cakeID, charID);
+        decorChar.add(decorID, charID);
+
+        System.out.println("\nСкоро будет готов торт: "+cakes.find(cakeID));
     }
 
     private void addCustomer(){
@@ -119,17 +128,15 @@ public class CakeOrderView {
 
         Iterator iterator = decorations.getAll().iterator();
         itera(iterator);
-        int id = Integer.parseInt(sc.next());
-        return id;
+        return Integer.parseInt(sc.next());
     }
 
     private int addCharacteristics(){
         System.out.println("Выберите id характеристики");
 
-        Iterator iterator = decorations.getAll().iterator();
+        Iterator iterator = characteristics.getAll().iterator();
         itera(iterator);
-        int id = Integer.parseInt(sc.next());
-        return id;
+        return Integer.parseInt(sc.next());
     }
 
     private void itera(Iterator iterator){

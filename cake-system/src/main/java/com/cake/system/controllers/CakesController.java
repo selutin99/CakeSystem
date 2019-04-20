@@ -13,22 +13,15 @@ public class CakesController {
     }
 
     public void add(int id, int customerID, String name, float price, int cakeBase){
-        //TODO я устал и хочу спать
-        //this.service.add(id, customerID, name, price, cakeBase);
+        this.service.add(id, customerID, name, price, cakeBase);
     }
 
-    public void edit(Cakes data){
-        if(data==null){
-            throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
-        }
-        this.service.edit(data);
+    public void edit(int id, int customerID, String name, float price, int cakeBase){
+        this.service.edit(id, customerID, name, price, cakeBase);
     }
 
-    public void delete(Cakes data){
-        if(data==null){
-            throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
-        }
-        this.service.delete(data);
+    public void delete(int id, int customerID, String name, float price, int cakeBase){
+        this.service.delete(id, customerID, name, price, cakeBase);
     }
 
     public List<Cakes> getAll(){
