@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class MainMenu {
 
-    private Scanner sc = new Scanner(System.in);
+    private Scanner sc = new Scanner(System.in).useDelimiter("\n");
 
     public MainMenu(){
 
@@ -31,6 +31,7 @@ public class MainMenu {
                     break;
                 case 5:
                     System.out.println("Выходим из системы");
+                    sc.close();
                     System.exit(0);
                     break;
                 default:
