@@ -2,9 +2,7 @@ package com.cake.system.views;
 
 import com.cake.system.controllers.*;
 
-import java.util.Iterator;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class CakeOrderView {
     private static int customerID;
@@ -83,23 +81,29 @@ public class CakeOrderView {
         int cakeBaseID = addCakeBase();
         System.out.println("Основа успешно добавлена");
 
-        System.out.println("Выберите украшение торта");
-        int decorID = addDecor();
-        System.out.println("Украшение успешно добавлена");
+        System.out.println("Выберите украшения торта");
+        Set<Integer> decorID = addDecor();
+        System.out.println("Украшения успешно добавлены");
 
-        System.out.println("Выберите характеристику торта");
-        int charID = addCharacteristics();
-        System.out.println("Характеристика успешно добавлена");
+        System.out.println("Выберите характеристики торта");
+        Set<Integer> charID = addCharacteristics();
+        System.out.println("Характеристики успешно добавлены");
 
         Random r = new Random();
         double price = 32.2 + r.nextDouble() * (500.5 - 32.2);
 
         orderController.addCake(++cakeID, customerID, name, (float)price, cakeBaseID);
         //Для ассоциаций
-        cakesDecor.add(cakeID, decorID);
-        cakesChar.add(cakeID, charID);
-        decorChar.add(decorID, charID);
+        for(int i: decorID)
+            cakesDecor.add(cakeID, i);
+        for(int i: charID)
+            cakesChar.add(cakeID, i);
 
+        for(int i: decorID){
+            for(int j: charID){
+                decorChar.add(i, j);
+            }
+        }
         System.out.println("\nСкоро будет готов торт: "+cakes.find(cakeID));
     }
 
@@ -115,27 +119,34 @@ public class CakeOrderView {
 
     private int addCakeBase(){
         System.out.println("Выберите id основы");
-
-        Iterator iterator = orderController.getAllBases().iterator();
-        itera(iterator);
-        int id = Integer.parseInt(sc.next());
-        return id;
-    }
-
-    private int addDecor(){
-        System.out.println("Выберите id украшения");
-
-        Iterator iterator = orderController.getAllDecorations().iterator();
-        itera(iterator);
+        itera(orderController.getAllBases().iterator());
         return Integer.parseInt(sc.next());
     }
 
-    private int addCharacteristics(){
-        System.out.println("Выберите id характеристики");
+    private Set<Integer> addDecor(){
+        Set<Integer> set = new HashSet<>();
+        itera(orderController.getAllDecorations().iterator());
+        int choise;
+        do{
+            System.out.println("Выберите id украшений (для выхода введите -1)");
+            choise = Integer.parseInt(sc.next());
+            if(choise!=-1)
+                set.add(choise);
+        }while(choise!=-1);
+        return set;
+    }
 
-        Iterator iterator = characteristics.getAll().iterator();
-        itera(iterator);
-        return Integer.parseInt(sc.next());
+    private Set<Integer> addCharacteristics(){
+        Set<Integer> set = new HashSet<>();
+        itera(orderController.getAllChars().iterator());
+        int choise;
+        do{
+            System.out.println("Выберите id характеристик (для выхода введите -1)");
+            choise = Integer.parseInt(sc.next());
+            if(choise!=-1)
+                set.add(choise);
+        }while(choise!=-1);
+        return set;
     }
 
     private void itera(Iterator iterator){
