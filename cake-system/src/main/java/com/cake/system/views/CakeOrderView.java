@@ -16,7 +16,6 @@ public class CakeOrderView {
     private CakesController cakes;
     private CustomersController customer;
 
-    private DecorationsController decorations;
     private CharacteristicsController characteristics;
 
     //Associations controllers
@@ -24,20 +23,18 @@ public class CakeOrderView {
     private CakesCharacteristicsController cakesChar;
     private DecorationsCharacteristicsController decorChar;
 
-    private CakesBasesController cakesBases;
+    private OrderController orderController;
 
     public CakeOrderView(Scanner scanner){
         cakes = new CakesController();
         customer = new CustomersController();
 
-        decorations = new DecorationsController();
+        orderController = new OrderController();
         characteristics = new CharacteristicsController();
 
         cakesDecor = new CakesDecorationsController();
         cakesChar = new CakesCharacteristicsController();
         decorChar = new DecorationsCharacteristicsController();
-
-        cakesBases = new CakesBasesController();
 
         sc = scanner;
 
