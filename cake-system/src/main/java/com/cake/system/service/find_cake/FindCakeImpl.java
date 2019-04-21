@@ -17,7 +17,7 @@ public class FindCakeImpl implements FindCakeService {
     /*Это мой велосипед autowired.
       Таких велосипедов много, но это мой.
       Мой велосипед - мой лучший друг. Он - моя жизнь.*/
-    Connection con = Connection.getInstance();
+    private Connection con = Connection.getInstance();
 
     private ImplUnitOfWork<Cakes> cakesRepo;
 
