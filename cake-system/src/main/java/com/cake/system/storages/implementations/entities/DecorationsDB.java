@@ -17,6 +17,11 @@ public class DecorationsDB implements DatabaseEntity<Decorations> {
 
     @Override
     public void insert(Decorations decorations) {
+        for(Decorations ck: this.decorations){
+            if(ck.getId()==decorations.getId()){
+                throw new IllegalArgumentException("Элемент с таким id уже существует!");
+            }
+        }
         this.decorations.add(decorations);
     }
 
@@ -37,6 +42,7 @@ public class DecorationsDB implements DatabaseEntity<Decorations> {
                 return;
             }
         }
+        throw new IllegalArgumentException("Элемента не существует!");
     }
 
     @Override
@@ -48,6 +54,7 @@ public class DecorationsDB implements DatabaseEntity<Decorations> {
                 return;
             }
         }
+        throw new IllegalArgumentException("Элемента не существует!");
     }
 
     @Override
@@ -58,6 +65,11 @@ public class DecorationsDB implements DatabaseEntity<Decorations> {
             }
         }
         return null;
+    }
+
+    @Override
+    public List<Decorations> getAll() {
+        return new ArrayList<>(this.decorations);
     }
 }
 

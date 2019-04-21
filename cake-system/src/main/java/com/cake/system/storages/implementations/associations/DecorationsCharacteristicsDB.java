@@ -16,6 +16,12 @@ public class DecorationsCharacteristicsDB implements DatabaseAssoc<DecorationsCh
 
     @Override
     public void insert(DecorationsCharacteristics decorationsCharacteristics) {
+        for(DecorationsCharacteristics ck: this.decorationsCharacteristics){
+            if(ck.getCakeDecorationID()==decorationsCharacteristics.getCakeDecorationID() &&
+                    ck.getCakeDecorationCharacteristicsID()==decorationsCharacteristics.getCakeDecorationCharacteristicsID()){
+                throw new IllegalArgumentException("Элемент с таким id уже существует!");
+            }
+        }
         this.decorationsCharacteristics.add(decorationsCharacteristics);
     }
 
@@ -35,6 +41,7 @@ public class DecorationsCharacteristicsDB implements DatabaseAssoc<DecorationsCh
                 return;
             }
         }
+        throw new IllegalArgumentException("Элемента не существует!");
     }
 
     @Override
@@ -55,6 +62,7 @@ public class DecorationsCharacteristicsDB implements DatabaseAssoc<DecorationsCh
                 return;
             }
         }
+        throw new IllegalArgumentException("Элемента не существует!");
     }
 
     @Override
@@ -65,6 +73,11 @@ public class DecorationsCharacteristicsDB implements DatabaseAssoc<DecorationsCh
             }
         }
         return null;
+    }
+
+    @Override
+    public List<DecorationsCharacteristics> getAll() {
+        return new ArrayList<>(this.decorationsCharacteristics);
     }
 }
 
