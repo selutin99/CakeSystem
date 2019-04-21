@@ -29,6 +29,22 @@
               <folding>
                 <element signature="e#172#173#0" expanded="true" />
               </folding>
+      <file leaf-file-name="CakeOrderView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/cake/system/views/CakeOrderView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1664">
+              <caret line="106" column="30" selection-start-line="106" selection-start-column="30" selection-end-line="106" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainMenu.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/cake/system/views/MainMenu.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="254">
+              <caret line="23" column="23" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -102,6 +118,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/cake/system/service/cake_order/CharacteristicComponent.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cake/system/controllers/OrderController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cake/system/views/CakeOrderView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cake/system/views/MainMenu.java" />
       </list>
     </option>
   </component>
@@ -906,11 +923,13 @@
       <workItem from="1555776676387" duration="3361000" />
       <workItem from="1555819230097" duration="2053000" />
       <workItem from="1555853228422" duration="4164000" />
+      <workItem from="1555818902624" duration="255000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="34449000" />
+    <option name="totallyTimeSpent" value="25126000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
@@ -1091,16 +1110,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="169">
           <caret line="18" column="54" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="54" />
-          <folding>
-            <element signature="e#410#411#0" expanded="false" />
-            <element signature="e#459#460#0" expanded="false" />
-            <element signature="e#517#518#0" expanded="false" />
-            <element signature="e#567#568#0" expanded="false" />
-            <element signature="e#627#628#0" expanded="false" />
-            <element signature="e#679#680#0" expanded="false" />
-            <element signature="e#809#810#0" expanded="false" />
-            <element signature="e#853#854#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1159,16 +1168,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-          <folding>
-            <element signature="e#441#442#0" expanded="false" />
-            <element signature="e#488#489#0" expanded="false" />
-            <element signature="e#534#535#0" expanded="false" />
-            <element signature="e#582#583#0" expanded="false" />
-            <element signature="e#630#631#0" expanded="false" />
-            <element signature="e#680#681#0" expanded="false" />
-            <element signature="e#835#836#0" expanded="false" />
-            <element signature="e#890#891#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1197,16 +1196,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="166">
           <caret line="22" column="44" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="44" />
-          <folding>
-            <element signature="e#417#418#0" expanded="false" />
-            <element signature="e#464#465#0" expanded="false" />
-            <element signature="e#510#511#0" expanded="false" />
-            <element signature="e#558#559#0" expanded="false" />
-            <element signature="e#606#607#0" expanded="false" />
-            <element signature="e#656#657#0" expanded="false" />
-            <element signature="e#803#804#0" expanded="false" />
-            <element signature="e#858#859#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1214,10 +1203,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="18" column="42" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="42" />
-          <folding>
-            <element signature="e#570#571#0" expanded="false" />
-            <element signature="e#618#619#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1226,6 +1211,8 @@
         <state relative-caret-position="182">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
           <folding />
+        <state relative-caret-position="78">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1262,6 +1249,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="16" column="82" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="82" />
+        <state relative-caret-position="728">
+          <caret line="34" column="73" selection-start-line="34" selection-start-column="73" selection-end-line="34" selection-end-column="73" />
         </state>
       </provider>
     </entry>
@@ -1283,13 +1272,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        <state relative-caret-position="338">
+          <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cake/system/views/MainMenu.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cake/system/views/CakeOrderView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="279">
           <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+        <state relative-caret-position="1664">
+          <caret line="106" column="30" selection-start-line="106" selection-start-column="30" selection-end-line="106" selection-end-column="30" />
           <folding />
         </state>
       </provider>
@@ -1337,6 +1330,11 @@
           <folding>
             <element signature="e#172#173#0" expanded="true" />
           </folding>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cake/system/views/MainMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="23" column="23" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
