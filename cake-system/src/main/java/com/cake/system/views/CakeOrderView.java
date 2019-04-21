@@ -36,6 +36,8 @@ public class CakeOrderView {
         cakesChar = new CakesCharacteristicsController();
         decorChar = new DecorationsCharacteristicsController();
 
+        orderController = new OrderController();
+
         sc = scanner;
 
         header();
@@ -92,7 +94,7 @@ public class CakeOrderView {
         Random r = new Random();
         double price = 32.2 + r.nextDouble() * (500.5 - 32.2);
 
-        cakes.add(++cakeID, customerID, name, (float)price, cakeBaseID);
+        orderController.addCake(++cakeID, customerID, name, (float)price, cakeBaseID);
         //Для ассоциаций
         cakesDecor.add(cakeID, decorID);
         cakesChar.add(cakeID, charID);
@@ -114,7 +116,7 @@ public class CakeOrderView {
     private int addCakeBase(){
         System.out.println("Выберите id основы");
 
-        Iterator iterator = cakesBases.getAll().iterator();
+        Iterator iterator = orderController.getAllBases().iterator();
         itera(iterator);
         int id = Integer.parseInt(sc.next());
         return id;
@@ -123,7 +125,7 @@ public class CakeOrderView {
     private int addDecor(){
         System.out.println("Выберите id украшения");
 
-        Iterator iterator = decorations.getAll().iterator();
+        Iterator iterator = orderController.getAllDecorations().iterator();
         itera(iterator);
         return Integer.parseInt(sc.next());
     }
