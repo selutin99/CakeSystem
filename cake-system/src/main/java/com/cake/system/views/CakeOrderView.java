@@ -40,11 +40,13 @@ public class CakeOrderView {
 
         header();
 
-        int choise;
+        int choise = -1;
         do {
             menu();
             System.out.println(":::Введите необходимое действие:::");
-            choise = Integer.parseInt(sc.next());
+            try{
+                choise = Integer.parseInt(sc.next());
+            }catch(NumberFormatException e){}
 
             switch (choise) {
                 case 0:
@@ -75,7 +77,16 @@ public class CakeOrderView {
         System.out.println("Клиент успешно добавлен\n");
 
         System.out.println("Введите название торта");
-        String name = sc.next();
+        String name = "";
+        while(true) {
+            name = sc.next();
+            if(name!=null && !name.trim().isEmpty()){
+                break;
+            }
+            else{
+                System.out.println("Введите не пустое название торта");
+            }
+        }
 
         System.out.println("Выберите основу торта");
         int cakeBaseID = addCakeBase();
@@ -108,44 +119,91 @@ public class CakeOrderView {
     }
 
     private void addCustomer(){
-        System.out.println("Введите имя получателя");
-        String name = sc.next();
+        boolean success = false;
+        while (!success) {
+            try {
+                System.out.println("Введите имя получателя (для отмены введите -1)");
+                String name = sc.next();
+                if(name.equals("-1")){
+                    return;
+                }
 
-        System.out.println("Введите фамилию получателя");
-        String lastName = sc.next();
+                System.out.println("Введите фамилию получателя (для отмены введите -1)");
+                String lastName = sc.next();
+                if(lastName.equals("-1")){
+                    return;
+                }
 
-        customer.add(++customerID, name, lastName);
+                customer.add(++customerID, name, lastName);
+                success = true;
+            } catch(IllegalArgumentException e) {
+                System.out.println("Введите не пустые значения (фамилию и/или имя)");
+            }
+        }
+
     }
 
     private int addCakeBase(){
-        System.out.println("Выберите id основы");
-        itera(orderController.getAllBases().iterator());
-        return Integer.parseInt(sc.next());
+        boolean success = false;
+        while (!success) {
+            try {
+                System.out.println("Выберите id основы");
+                itera(orderController.getAllBases().iterator());
+                return Integer.parseInt(sc.next());
+            } catch(IllegalArgumentException e) {
+                System.out.println("Введите верное значение (существующий id)");
+            }
+        }
+        return 0;
     }
 
     private Set<Integer> addDecor(){
         Set<Integer> set = new HashSet<>();
         itera(orderController.getAllDecorations().iterator());
-        int choise;
-        do{
-            System.out.println("Выберите id украшений (для выхода введите -1)");
-            choise = Integer.parseInt(sc.next());
-            if(choise!=-1)
-                set.add(choise);
-        }while(choise!=-1);
+        boolean success = false;
+        while (!success) {
+            try {
+                int choise;
+                do{
+                    System.out.println("Введите последовательно (через клавишу ввода) id украшений");
+                    System.out.println("Для окончания выбора введите -1");
+                    choise = Integer.parseInt(sc.next());
+
+                    if(choise!=-1)
+                        set.add(choise);
+                }while(choise!=-1);
+                success = true;
+            } catch(NumberFormatException e) {
+                System.out.println("Введите число!");
+            } catch(IllegalArgumentException e){
+                System.out.println("Введите допустимое значение!");
+            }
+        }
         return set;
     }
 
     private Set<Integer> addCharacteristics(){
         Set<Integer> set = new HashSet<>();
         itera(orderController.getAllChars().iterator());
-        int choise;
-        do{
-            System.out.println("Выберите id характеристик (для выхода введите -1)");
-            choise = Integer.parseInt(sc.next());
-            if(choise!=-1)
-                set.add(choise);
-        }while(choise!=-1);
+        boolean success = false;
+        while (!success) {
+            try {
+                int choise;
+                do{
+                    System.out.println("Введите последовательно (через клавишу ввода) id характеристик");
+                    System.out.println("Для окончания выбора введите -1");
+                    choise = Integer.parseInt(sc.next());
+
+                    if(choise!=-1)
+                        set.add(choise);
+                }while(choise!=-1);
+                success = true;
+            } catch(NumberFormatException e) {
+                System.out.println("Введите число!");
+            } catch(IllegalArgumentException e){
+                System.out.println("Введите допустимое значение!");
+            }
+        }
         return set;
     }
 

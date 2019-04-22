@@ -17,12 +17,13 @@ public class DecorationsView {
 
         header();
 
-        int choise;
+        int choise = -1;
         do {
             menu();
             System.out.println(":::Введите необходимое действие:::");
-            choise = Integer.parseInt(sc.next());
-
+            try{
+                choise = Integer.parseInt(sc.next());
+            }catch(NumberFormatException e){}
             switch (choise) {
                 case 0:
                     break;
@@ -64,45 +65,104 @@ public class DecorationsView {
     }
 
     private void addDecoration(){
-        System.out.println("Введите название украшения");
-        String name = sc.next();
-        System.out.println("Введите цену украшения");
-        float price = Float.parseFloat(sc.next());
-
-        controller.add(++id, name, price);
+        boolean success = false;
+        while (!success) {
+            try {
+                System.out.println("Введите название украшения (для отмены введите -1)");
+                String name = sc.next();
+                if(name.equals("-1")){
+                    return;
+                }
+                System.out.println("Введите цену украшения (для отмены введите -1)");
+                float price = Float.parseFloat(sc.next());
+                if(price==-1){
+                    return;
+                }
+                controller.add(++id, name, price);
+                success = true;
+            } catch(IllegalArgumentException e) {
+                System.out.println("Введите не пустое название и цену!");
+            }
+        }
     }
 
     private void editDecorations(){
-        System.out.println("Введите id украшения");
-        int id = Integer.parseInt(sc.next());
-
-        System.out.println("Введите новое название украшения");
-        String name = sc.next();
-
-        System.out.println("Введите новую цену украшения");
-        float price = Float.parseFloat(sc.next());
-
-        controller.edit(id, name, price);
+        boolean success = false;
+        while (!success) {
+            try {
+                System.out.println("Введите id украшения (для отмены введите -1)");
+                int id = Integer.parseInt(sc.next());
+                if(id==-1){
+                    return;
+                }
+                System.out.println("Введите новое название украшения (для отмены введите -1)");
+                String name = sc.next();
+                if(name.equals("-1")){
+                    return;
+                }
+                System.out.println("Введите новую цену украшения (для отмены введите -1)");
+                float price = Float.parseFloat(sc.next());
+                if(price==-1){
+                    return;
+                }
+                controller.edit(id, name, price);
+                success = true;
+            } catch(NumberFormatException e){
+                System.out.println("Введите число верно");
+            } catch(IllegalArgumentException e) {
+                System.out.println("Введите верное значение (существующий id и не пустое имя и/или цену)");
+            }
+        }
     }
 
     private void deleteDecorations(){
-        System.out.println("Введите id украшения");
-        int id = Integer.parseInt(sc.next());
+        boolean success = false;
+        while (!success) {
+            try {
+                System.out.println("Введите id украшения (для отмены введите -1)");
+                int id = Integer.parseInt(sc.next());
+                if(id==-1){
+                    return;
+                }
+                System.out.println("Введите новое название украшения (для отмены введите -1)");
+                String name = sc.next();
+                if(name.equals("-1")){
+                    return;
+                }
+                System.out.println("Введите новую цену украшения (для отмены введите -1)");
+                float price = Float.parseFloat(sc.next());
+                if(price==-1){
+                    return;
+                }
 
-        System.out.println("Введите удаляемое название украшения");
-        String name = sc.next();
-
-        System.out.println("Введите удаляемую цену украшения");
-        float price = Float.parseFloat(sc.next());
-
-        controller.delete(id, name, price);
+                controller.delete(id, name, price);
+                success = true;
+            } catch(NumberFormatException e){
+                System.out.println("Введите число верно");
+            } catch(IllegalArgumentException e) {
+                System.out.println("Введите верное значение (существующий id и не пустое имя и/или цену)");
+            }
+        }
     }
 
     private void findDecorations(){
-        System.out.println("Введите id искомого украшения");
+        boolean success = false;
+        while (!success) {
+            try {
+                System.out.println("Введите id искомого украшения (для отмены введите -1)");
 
-        int id = Integer.parseInt(sc.next());
-        System.out.println(controller.find(id)+"\n");
+                int id = Integer.parseInt(sc.next());
+                if(id==-1){
+                    return;
+                }
+                System.out.println(controller.find(id)+"\n");
+                success = true;
+            } catch(NumberFormatException e){
+                System.out.println("Введите число верно");
+            } catch(IllegalArgumentException e) {
+                System.out.println("Введите верное значение (существующий id)");
+            }
+        }
     }
 
     private void getAll(){

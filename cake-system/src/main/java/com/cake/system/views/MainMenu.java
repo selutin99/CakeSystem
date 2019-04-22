@@ -10,11 +10,13 @@ public class MainMenu {
 
         header();
 
-        int choise;
+        int choise = -1;
         do {
             menu();
             System.out.println(":::Введите необходимое действие:::");
-            choise = Integer.parseInt(sc.next());
+            try {
+                choise = Integer.parseInt(sc.next());
+            }catch(NumberFormatException e){}
 
             switch (choise) {
                 case 1:
