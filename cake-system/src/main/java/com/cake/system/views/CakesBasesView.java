@@ -17,12 +17,14 @@ public class CakesBasesView {
 
         header();
 
-        int choise;
+        int choise = -1;
         do {
             menu();
             System.out.println(":::Введите необходимое действие:::");
+            try{
             choise = Integer.parseInt(sc.next());
-
+            }catch(NumberFormatException e){
+            }
             switch (choise) {
                 case 0:
                     break;
@@ -64,34 +66,88 @@ public class CakesBasesView {
     }
 
     private void addCakeBase(){
-        System.out.println("Введите название основы торта");
-        String name = sc.next();
-        controller.add(++id, name);
+        boolean success = false;
+        while (!success) {
+            try {
+                System.out.println("Введите название основы торта (для отмены введите -1)");
+                String name = sc.next();
+                if(name.equals("-1")){
+                    return;
+                }
+                controller.add(++id, name);
+                success = true;
+            } catch(IllegalArgumentException e) {
+                System.out.println("Введите не пустое название!");
+            }
+        }
     }
 
     private void editCakeBase(){
-        System.out.println("Введите последовательно id и название новой основы торта");
+        boolean success = false;
+        while (!success) {
+            try {
+                System.out.println("Введите последовательно id и название новой основы торта (для отмены введите -1)");
 
-        int id = Integer.parseInt(sc.next());
-        String name = sc.next();
-
-        controller.edit(id, name);
+                int id = Integer.parseInt(sc.next());
+                if(id==-1){
+                    return;
+                }
+                String name = sc.next();
+                if(name.equals("-1")){
+                    return;
+                }
+                controller.edit(id, name);
+                success = true;
+            } catch(NumberFormatException e){
+                System.out.println("Введите число верно");
+            } catch(IllegalArgumentException e) {
+                System.out.println("Введите верное значение (существующий id и не пустое имя)");
+            }
+        }
     }
 
     private void deleteCakeBase(){
-        System.out.println("Введите последовательно id и название удаляемой основы торта");
+        boolean success = false;
+        while (!success) {
+            try {
+                System.out.println("Введите последовательно id и название удаляемой основы торта (для отмены введите -1)");
 
-        int id = Integer.parseInt(sc.next());
-        String name = sc.next();
-
-        controller.delete(id, name);
+                int id = Integer.parseInt(sc.next());
+                if(id==-1){
+                    return;
+                }
+                String name = sc.next();
+                if(name.equals("-1")){
+                    return;
+                }
+                controller.delete(id, name);
+                success = true;
+            } catch(NumberFormatException e){
+                System.out.println("Введите число верно");
+            } catch(IllegalArgumentException e) {
+                System.out.println("Введите верное значение (существующий id и не пустое имя)");
+            }
+        }
     }
 
     private void findCakeBase(){
-        System.out.println("Введите id искомой основы торта");
+        boolean success = false;
+        while (!success) {
+            try {
+                System.out.println("Введите id искомой основы торта (для отмены введите -1)");
 
-        int id = Integer.parseInt(sc.next());
-        System.out.println(controller.find(id)+"\n");
+                int id = Integer.parseInt(sc.next());
+                if(id==-1){
+                    return;
+                }
+                System.out.println(controller.find(id)+"\n");
+                success = true;
+            } catch(NumberFormatException e){
+                System.out.println("Введите число верно");
+            } catch(IllegalArgumentException e) {
+                System.out.println("Введите верное значение (существующий id)");
+            }
+        }
     }
 
     private void getAll(){

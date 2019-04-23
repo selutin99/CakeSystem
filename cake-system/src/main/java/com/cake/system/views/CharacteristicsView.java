@@ -17,12 +17,13 @@ public class CharacteristicsView {
 
         header();
 
-        int choise;
+        int choise = -1;
         do {
             menu();
             System.out.println(":::Введите необходимое действие:::");
+            try{
             choise = Integer.parseInt(sc.next());
-
+            }catch(NumberFormatException e){}
             switch (choise) {
                 case 0:
                     break;
@@ -64,45 +65,108 @@ public class CharacteristicsView {
     }
 
     private void addCharacteristics(){
-        System.out.println("Введите название характеристики");
-        String name = sc.next();
-        System.out.println("Введите значение характеристики");
-        String value = sc.next();
-
-        controller.add(++id, name, value);
+        boolean success = false;
+        while (!success) {
+            try {
+                System.out.println("Введите название характеристики (для отмены введите -1)");
+                String name = sc.next();
+                if(name.equals("-1")){
+                    return;
+                }
+                System.out.println("Введите значение характеристики (для отмены введите -1)");
+                String value = sc.next();
+                if(value.equals("-1")){
+                    return;
+                }
+                controller.add(++id, name, value);
+                success = true;
+            } catch(IllegalArgumentException e) {
+                System.out.println("Введите не пустое название и значение!");
+            }
+        }
     }
 
     private void editCharacteristics(){
-        System.out.println("Введите id украшения");
-        int id = Integer.parseInt(sc.next());
+        boolean success = false;
+        while (!success) {
+            try {
+                System.out.println("Введите id характеристики (для отмены введите -1)");
+                int id = Integer.parseInt(sc.next());
+                if(id==-1){
+                    return;
+                }
 
-        System.out.println("Введите новую характеристику");
-        String name = sc.next();
+                System.out.println("Введите новую характеристику (для отмены введите -1)");
+                String name = sc.next();
+                if(name.equals("-1")){
+                    return;
+                }
 
-        System.out.println("Введите новое значение характеристики");
-        String value = sc.next();
-
-        controller.edit(id, name, value);
+                System.out.println("Введите новое значение характеристики (для отмены введите -1)");
+                String value = sc.next();
+                if(value.equals("-1")){
+                    return;
+                }
+                controller.edit(id, name, value);
+                success = true;
+            } catch(NumberFormatException e){
+                System.out.println("Введите число верно");
+            } catch(IllegalArgumentException e) {
+                System.out.println("Введите верное значение (существующий id и не пустое имя и/или значение)");
+            }
+        }
     }
 
     private void deleteCharacteristics(){
-        System.out.println("Введите id характеристики");
-        int id = Integer.parseInt(sc.next());
+        boolean success = false;
+        while (!success) {
+            try {
+                System.out.println("Введите id характеристики (для отмены введите -1)");
+                int id = Integer.parseInt(sc.next());
+                if(id==-1){
+                    return;
+                }
 
-        System.out.println("Введите удаляемое название характеристики");
-        String name = sc.next();
+                System.out.println("Введите удаляемое название характеристики (для отмены введите -1)");
+                String name = sc.next();
+                if(name.equals("-1")){
+                    return;
+                }
 
-        System.out.println("Введите удаляемое значение характеристики");
-        String value = sc.next();
-
-        controller.delete(id, name, value);
+                System.out.println("Введите удаляемое значение характеристики (для отмены введите -1)");
+                String value = sc.next();
+                if(value.equals("-1")){
+                    return;
+                }
+                controller.delete(id, name, value);
+                success = true;
+            } catch(NumberFormatException e){
+                System.out.println("Введите число верно");
+            } catch(IllegalArgumentException e) {
+                System.out.println("Введите верное значение (существующий id и не пустое имя и/или значение)");
+            }
+        }
     }
 
     private void findCharacteristics(){
-        System.out.println("Введите id искомой характеристики");
 
-        int id = Integer.parseInt(sc.next());
-        System.out.println(controller.find(id)+"\n");
+        boolean success = false;
+        while (!success) {
+            try {
+                System.out.println("Введите id искомой характеристики (для отмены введите -1)");
+
+                int id = Integer.parseInt(sc.next());
+                if(id==-1){
+                    return;
+                }
+                System.out.println(controller.find(id)+"\n");
+                success = true;
+            } catch(NumberFormatException e){
+                System.out.println("Введите число верно");
+            } catch(IllegalArgumentException e) {
+                System.out.println("Введите верное значение (существующий id)");
+            }
+        }
     }
 
     private void getAll(){

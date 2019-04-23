@@ -15,24 +15,30 @@ public class CustomersService {
     }
 
     public void add(int id, String firstName, String lastName){
-        if(firstName==null || lastName==null){
+        if(firstName!=null && !firstName.trim().isEmpty() && lastName!=null && !lastName.trim().isEmpty()){
+            this.repo.create(new Customers(id, firstName, lastName));
+        }
+        else {
             throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
         }
-        this.repo.create(new Customers(id, firstName, lastName));
     }
 
     public void edit(int id, String firstName, String lastName){
-        if(firstName==null || lastName==null){
+        if(firstName!=null && !firstName.trim().isEmpty() && lastName!=null && !lastName.trim().isEmpty()){
+            this.repo.edit(new Customers(id, firstName, lastName));
+        }
+        else {
             throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
         }
-        this.repo.edit(new Customers(id, firstName, lastName));
     }
 
     public void delete(int id, String firstName, String lastName){
-        if(firstName==null || lastName==null){
+        if(firstName!=null && !firstName.trim().isEmpty() && lastName!=null && !lastName.trim().isEmpty()){
+            this.repo.delete(new Customers(id, firstName, lastName));
+        }
+        else {
             throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
         }
-        this.repo.delete(new Customers(id, firstName, lastName));
     }
 
     public List<Customers> getAll(){

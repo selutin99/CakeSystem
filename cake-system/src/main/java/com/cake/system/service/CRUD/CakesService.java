@@ -15,24 +15,30 @@ public class CakesService {
     }
 
     public void add(int id, int customerID, String name, float price, int cakeBase){
-        if(name==null){
+        if(name!=null && !name.trim().isEmpty() ){
+            this.repo.create(new Cakes(id, name, price, customerID, cakeBase));
+        }
+        else {
             throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
         }
-        this.repo.create(new Cakes(id, name, price, customerID, cakeBase));
     }
 
     public void edit(int id, int customerID, String name, float price, int cakeBase){
-        if(name==null){
+        if(name!=null && !name.trim().isEmpty() ){
+            this.repo.edit(new Cakes(id, name, price, customerID, cakeBase));
+        }
+        else {
             throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
         }
-        this.repo.edit(new Cakes(id, name, price, customerID, cakeBase));
     }
 
     public void delete(int id, int customerID, String name, float price, int cakeBase){
-        if(name==null){
+        if(name!=null && !name.trim().isEmpty() ){
+            this.repo.delete(new Cakes(id, name, price, customerID, cakeBase));
+        }
+        else {
             throw new IllegalArgumentException("Нельзя передавать пустой аргумент");
         }
-        this.repo.delete(new Cakes(id, name, price, customerID, cakeBase));
     }
 
     public List<Cakes> getAll(){

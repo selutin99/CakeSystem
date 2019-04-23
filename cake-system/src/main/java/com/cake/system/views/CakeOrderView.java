@@ -2,9 +2,7 @@ package com.cake.system.views;
 
 import com.cake.system.controllers.*;
 
-import java.util.Iterator;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class CakeOrderView {
     private static int customerID;
@@ -16,7 +14,6 @@ public class CakeOrderView {
     private CakesController cakes;
     private CustomersController customer;
 
-    private DecorationsController decorations;
     private CharacteristicsController characteristics;
 
     //Associations controllers
@@ -24,30 +21,32 @@ public class CakeOrderView {
     private CakesCharacteristicsController cakesChar;
     private DecorationsCharacteristicsController decorChar;
 
-    private CakesBasesController cakesBases;
+    private OrderController orderController;
 
     public CakeOrderView(Scanner scanner){
         cakes = new CakesController();
         customer = new CustomersController();
 
-        decorations = new DecorationsController();
+        orderController = new OrderController();
         characteristics = new CharacteristicsController();
 
         cakesDecor = new CakesDecorationsController();
         cakesChar = new CakesCharacteristicsController();
         decorChar = new DecorationsCharacteristicsController();
 
-        cakesBases = new CakesBasesController();
+        orderController = new OrderController();
 
         sc = scanner;
 
         header();
 
-        int choise;
+        int choise = -1;
         do {
             menu();
             System.out.println(":::Введите необходимое действие:::");
-            choise = Integer.parseInt(sc.next());
+            try{
+                choise = Integer.parseInt(sc.next());
+            }catch(NumberFormatException e){}
 
             switch (choise) {
                 case 0:
@@ -78,65 +77,134 @@ public class CakeOrderView {
         System.out.println("Клиент успешно добавлен\n");
 
         System.out.println("Введите название торта");
-        String name = sc.next();
+        String name = "";
+        while(true) {
+            name = sc.next();
+            if(name!=null && !name.trim().isEmpty()){
+                break;
+            }
+            else{
+                System.out.println("Введите не пустое название торта");
+            }
+        }
 
         System.out.println("Выберите основу торта");
         int cakeBaseID = addCakeBase();
         System.out.println("Основа успешно добавлена");
 
-        System.out.println("Выберите украшение торта");
-        int decorID = addDecor();
-        System.out.println("Украшение успешно добавлена");
+        System.out.println("Выберите украшения торта");
+        Set<Integer> decorID = addDecor();
+        System.out.println("Украшения успешно добавлены");
 
-        System.out.println("Выберите характеристику торта");
-        int charID = addCharacteristics();
-        System.out.println("Характеристика успешно добавлена");
+        System.out.println("Выберите характеристики торта");
+        Set<Integer> charID = addCharacteristics();
+        System.out.println("Характеристики успешно добавлены");
 
         Random r = new Random();
         double price = 32.2 + r.nextDouble() * (500.5 - 32.2);
 
-        cakes.add(++cakeID, customerID, name, (float)price, cakeBaseID);
+        orderController.addCake(++cakeID, customerID, name, (float)price, cakeBaseID);
         //Для ассоциаций
-        cakesDecor.add(cakeID, decorID);
-        cakesChar.add(cakeID, charID);
-        decorChar.add(decorID, charID);
+        for(int i: decorID)
+            cakesDecor.add(cakeID, i);
+        for(int i: charID)
+            cakesChar.add(cakeID, i);
 
+        for(int i: decorID){
+            for(int j: charID){
+                decorChar.add(i, j);
+            }
+        }
         System.out.println("\nСкоро будет готов торт: "+cakes.find(cakeID));
     }
 
     private void addCustomer(){
-        System.out.println("Введите имя получателя");
-        String name = sc.next();
+        boolean success = false;
+        while (!success) {
+            try {
+                System.out.println("Введите имя получателя (для отмены введите -1)");
+                String name = sc.next();
+                if(name.equals("-1")){
+                    return;
+                }
 
-        System.out.println("Введите фамилию получателя");
-        String lastName = sc.next();
+                System.out.println("Введите фамилию получателя (для отмены введите -1)");
+                String lastName = sc.next();
+                if(lastName.equals("-1")){
+                    return;
+                }
 
-        customer.add(++customerID, name, lastName);
+                customer.add(++customerID, name, lastName);
+                success = true;
+            } catch(IllegalArgumentException e) {
+                System.out.println("Введите не пустые значения (фамилию и/или имя)");
+            }
+        }
+
     }
 
     private int addCakeBase(){
-        System.out.println("Выберите id основы");
-
-        Iterator iterator = cakesBases.getAll().iterator();
-        itera(iterator);
-        int id = Integer.parseInt(sc.next());
-        return id;
+        boolean success = false;
+        while (!success) {
+            try {
+                System.out.println("Выберите id основы");
+                itera(orderController.getAllBases().iterator());
+                return Integer.parseInt(sc.next());
+            } catch(IllegalArgumentException e) {
+                System.out.println("Введите верное значение (существующий id)");
+            }
+        }
+        return 0;
     }
 
-    private int addDecor(){
-        System.out.println("Выберите id украшения");
+    private Set<Integer> addDecor(){
+        Set<Integer> set = new HashSet<>();
+        itera(orderController.getAllDecorations().iterator());
+        boolean success = false;
+        while (!success) {
+            try {
+                int choise;
+                do{
+                    System.out.println("Введите последовательно (через клавишу ввода) id украшений");
+                    System.out.println("Для окончания выбора введите -1");
+                    choise = Integer.parseInt(sc.next());
 
-        Iterator iterator = decorations.getAll().iterator();
-        itera(iterator);
-        return Integer.parseInt(sc.next());
+                    if(choise!=-1)
+                        set.add(choise);
+                }while(choise!=-1);
+                success = true;
+            } catch(NumberFormatException e) {
+                System.out.println("Введите число!");
+            } catch(IllegalArgumentException e){
+                System.out.println("Введите допустимое значение!");
+            }
+        }
+        return set;
     }
 
-    private int addCharacteristics(){
-        System.out.println("Выберите id характеристики");
+    private Set<Integer> addCharacteristics(){
+        Set<Integer> set = new HashSet<>();
+        itera(orderController.getAllChars().iterator());
+        boolean success = false;
+        while (!success) {
+            try {
+                int choise;
+                do{
+                    System.out.println("Введите последовательно (через клавишу ввода) id характеристик");
+                    System.out.println("Для окончания выбора введите -1");
+                    choise = Integer.parseInt(sc.next());
 
-        Iterator iterator = characteristics.getAll().iterator();
-        itera(iterator);
-        return Integer.parseInt(sc.next());
+                    if(choise!=-1)
+                        set.add(choise);
+                }while(choise!=-1);
+                success = true;
+            } catch(NumberFormatException e) {
+                System.out.println("Введите число!");
+            } catch(IllegalArgumentException e){
+                System.out.println("Введите допустимое значение!");
+            }
+        }
+        return set;
     }
 
     private void itera(Iterator iterator){
